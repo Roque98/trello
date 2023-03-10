@@ -8,7 +8,9 @@ import { BtnComponent } from './components/btn/btn.component';
 import { BoardsComponent } from './pages/boards/boards.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {OverlayModule} from '@angular/cdk/overlay';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -16,13 +18,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     BtnComponent,
     BoardsComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     OverlayModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CdkAccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
