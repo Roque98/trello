@@ -19,6 +19,31 @@ export class BoardsComponent implements OnInit {
   faUsers = faUsers;
   faCog = faCog;
 
+  items = [
+    {
+      label: 'My Boards',
+      items: [
+        {
+          label: 'My Boards',
+        },
+        {
+          label: 'Starred Boards',
+        },
+      ],
+    },
+    {
+      label: 'My Boards 2',
+      items: [
+        {
+          label: 'My Boards 2.1',
+        },
+        {
+          label: 'Starred Boards 2.2',
+        },
+      ],
+    },
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
