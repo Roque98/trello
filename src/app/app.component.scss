@@ -1,0 +1,7 @@
+// Custom scroll bar like trello
+
+body {
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+}

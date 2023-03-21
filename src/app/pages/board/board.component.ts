@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { ToDo } from 'src/app/components/models/todo.model';
+import { Column, ToDo } from 'src/app/components/models/todo.model';
 
 
 
@@ -23,44 +23,56 @@ import { ToDo } from 'src/app/components/models/todo.model';
 })
 export class BoardComponent implements OnInit {
 
-  todos: ToDo[] = [
+  columns: Column[] = [
     {
       id: '1',
-      title: 'Make dishes'
+      title: 'To do',
+      todos: [
+        {
+          id: '1',
+          title: 'Make dishes'
+        },
+        {
+          id: '2',
+          title: 'Buy a unicorn'
+        }
+      ]
     },
     {
       id: '2',
-      title: 'Buy a unicorn'
-    }
-  ];
-
-  doing: ToDo[] = [
+      title: 'Doing',
+      todos: [
+        {
+          id: '3',
+          title: 'Watch Angular Path in Platzi'
+        },
+        {
+          id: '4',
+          title: 'Play video games'
+        },
+        {
+          id: '5',
+          title: 'Play soccer'
+        }
+      ]
+    },
     {
       id: '3',
-      title: 'Watch Angular Path in Platzi'
-    },
-    {
-      id: '4',
-      title: 'Play video games'
-    },
-    {
-      id: '5',
-      title: 'Play soccer'
+      title: 'Done',
+      todos: [
+        {
+          id: '6',
+          title: 'Go to the gym'
+        },
+        {
+          id: '7',
+          title: 'Go to the movies'
+        },
+      ]
     }
   ];
 
-  done: ToDo[] = [
-    {
-      id: '6',
-      title: 'Go to the gym'
-    },
-    {
-      id: '7',
-      title: 'Go to the movies'
-    },
-  ];
-    
-
+  isOpen = false;
 
   constructor() { 
 
@@ -85,5 +97,23 @@ export class BoardComponent implements OnInit {
 
   }
 
+  // getter of array of ids columns
+  get columnsIds() {
+    return this.columns.map(column => column.id);
+  }
+
+  // getter of array of ids from other html elements
+  getId(elementName: string) {
+    return this.columns.map(column => column.id + elementName);
+  }
+
+  // Add new column
+  addColumn() {
+    this.columns.push({
+      id: this.columns.length + 1 + '',
+      title: 'New column',
+      todos: []
+    });
+  }
 }
 
