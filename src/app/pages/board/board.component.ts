@@ -81,31 +81,13 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  drop(event: CdkDragDrop<ToDo[]>) {
-    if (event.previousContainer === event.container) {
-      console.log('same container');
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      console.log('different container');
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
-
-  }
+  
 
   // getter of array of ids columns
   get columnsIds() {
     return this.columns.map(column => column.id);
   }
 
-  // getter of array of ids from other html elements
-  getId(elementName: string) {
-    return this.columns.map(column => column.id + elementName);
-  }
 
   // Add new column
   addColumn() {
@@ -115,5 +97,20 @@ export class BoardComponent implements OnInit {
       todos: []
     });
   }
+
+  // Move todo
+  drop(event: CdkDragDrop<ToDo[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
+  
 }
 

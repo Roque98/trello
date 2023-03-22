@@ -1,0 +1,8 @@
+<!-- En caso de que el titulo tenga una longitud mayor a 0 -->
+<div *ngIf="!isNew" class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400">
+    {{ todo.title }}
+</div>
+<!-- Este codigo se usa en caso de que se esta creando una nueva card -->
+<div *ngIf="isNew">
+    <input type="text" class="bg-white text-sm	 shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer w-full border-none" placeholder="Introduzca un titulo para esta tarjeta..." [value]="todo.title" >
+</div>
