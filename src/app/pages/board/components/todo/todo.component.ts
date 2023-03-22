@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToDo } from 'src/app/components/models/todo.model';
+import { Dialog } from "@angular/cdk/dialog";
+import { TodoDialogComponent } from "../../../../components/todo-dialog/todo-dialog.component";
 
 @Component({
   selector: 'app-todo',
@@ -25,9 +27,20 @@ export class TodoComponent implements OnInit {
     title: '',
   };
 
-  constructor() { }
+  constructor(
+    private dialog: Dialog
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  // Open dialog to edit the todo
+  openDialog() {
+    this.dialog.open(TodoDialogComponent, {
+      minWidth: '300px',
+      maxWidth: '500px',
+      autoFocus: false,
+    });
   }
 
   // Getter para saber si el todo es nuevo o no. Si el id es igual a '', es nuevo.

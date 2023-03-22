@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BtnComponent implements OnInit {
   @Input() typeBtn: 'button' | 'reset' | 'submit' = 'button';
-  @Input() color : 'primary' | 'secondary' | 'success' | 'sky' = 'primary';
+  @Input() color : 'primary' | 'secondary' | 'success' | 'gray-light' | 'sky' = 'gray-light';
 
   constructor() { }
 
@@ -27,6 +27,9 @@ export class BtnComponent implements OnInit {
       'bg-sky-700': this.color === 'sky',
       'hover: bg-sky-800': this.color === 'sky',
       'focus: ring-sky-300': this.color === 'sky',
+      'bg-gray-200': this.color === 'gray-light',
+      'hover: bg-gray-300': this.color === 'gray-light',
+      'focus: ring-gray-300': this.color === 'gray-light',
     };
   }
 }

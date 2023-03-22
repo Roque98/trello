@@ -14,6 +14,8 @@ import { BoardComponent } from './pages/board/board.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ColumnComponent } from './pages/board/components/column/column.component';
 import { TodoComponent } from './pages/board/components/todo/todo.component';
+import { DialogModule } from '@angular/cdk/dialog';
+import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { TodoComponent } from './pages/board/components/todo/todo.component';
     BoardComponent,
     ColumnComponent,
     TodoComponent,
+    TodoDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { TodoComponent } from './pages/board/components/todo/todo.component';
     FontAwesomeModule,
     CdkAccordionModule,
     DragDropModule,
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
