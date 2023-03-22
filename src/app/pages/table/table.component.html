@@ -1,34 +1,40 @@
 <div class="flex flex-col h-screen">
     <app-navbar></app-navbar>
     <div class="w-full grow bg-white-600 p-6">
-        <table cdk-table [dataSource]="products">
-            <tr cdk-header-row *cdkHeaderRowDef="columnsToDisplay"></tr>
-            <tr cdk-row *cdkRowDef="let row; columns: columnsToDisplay"></tr>
+        <h1 class="text-xl text-gray-600 font-semi italic mb-5">Table</h1>
+        <table cdk-table [dataSource]="products" class="w-full text-sm text-left text-gray-500">
+            <tr cdk-header-row class="text-xs text-gray-700 uppercase bg-gray-50" *cdkHeaderRowDef="columnsToDisplay"></tr>
+            <tr cdk-row [ngClass]="{'bg-red-200': row.price < 100}" class="bg-white border-b" *cdkRowDef="let row; columns: columnsToDisplay"></tr>
+            <tr cdk-footer-row class="text-xs text-gray-700 uppercase bg-gray-200" *cdkFooterRowDef="columnsToDisplay"></tr>
 
             <!-- id column -->
             <ng-container cdkColumnDef="id">
-                <th cdk-header-cell *cdkHeaderCellDef>Id</th>
-                <td cdk-cell *cdkCellDef="let row">{{row.id}}</td>
+                <th cdk-header-cell class="px-6 py-3" *cdkHeaderCellDef>Id</th>
+                <td cdk-cell *cdkCellDef="let row" class="px-6 py-4">{{row.id}}</td>
+                <td cdk-footer-cell class="px-6 py-3" *cdkFooterCellDef></td>
             </ng-container>
 
             <!-- title column -->
             <ng-container cdkColumnDef="title">
-                <th cdk-header-cell *cdkHeaderCellDef>Title</th>
-                <td cdk-cell *cdkCellDef="let row">{{row.title}}</td>
+                <th cdk-header-cell class="px-6 py-3" *cdkHeaderCellDef>Title</th>
+                <td cdk-cell *cdkCellDef="let row" class="px-6 py-4">{{row.title}}</td>
+                <td cdk-footer-cell class="px-6 py-3" *cdkFooterCellDef></td>
             </ng-container>
 
             <!-- price column -->
             <ng-container cdkColumnDef="price">
-                <th cdk-header-cell *cdkHeaderCellDef>Price</th>
-                <td cdk-cell *cdkCellDef="let row">{{row.price}}</td>
+                <th cdk-header-cell class="px-6 py-3" *cdkHeaderCellDef>Price</th>
+                <td cdk-cell *cdkCellDef="let row" class="px-6 py-4" >{{row.price}}</td>
+                <td cdk-footer-cell class="px-6 py-3" *cdkFooterCellDef>{{total}}</td>
             </ng-container>
 
             <!-- cover column-->
             <ng-container cdkColumnDef="cover">
-                <th cdk-header-cell *cdkHeaderCellDef>Cover</th>
-                <td cdk-cell *cdkCellDef="let row">
-                    <img class="w-64" [src]="row.images[0]" alt="cover" width="100" height="100">
+                <th cdk-header-cell class="px-6 py-3" *cdkHeaderCellDef>Cover</th>
+                <td cdk-cell *cdkCellDef="let row" class="px-6 py-4">
+                    <img class="w-20" [src]="row.images[0]" alt="cover" width="100" height="100">
                 </td>
+                <td cdk-footer-cell class="px-6 py-3" *cdkFooterCellDef></td>
             </ng-container>
         </table>
     </div>

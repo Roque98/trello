@@ -12,6 +12,7 @@ export class TableComponent implements OnInit {
 
   products: Product[] = [];
   columnsToDisplay = ['id', 'title', 'price', 'cover'];
+  total = 0;
 
   constructor(
     private http: HttpClient
@@ -20,6 +21,9 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<Product[]>('https://api.escuelajs.co/api/v1/products').subscribe(products => {
       this.products = products;
+      this.total = this.products
+        .map(product => product.price)
+        .reduce((acc, price) => acc + price, 0);
     });
   }
 }
