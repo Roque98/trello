@@ -2,6 +2,7 @@
     <app-navbar></app-navbar>
     <div class="w-full grow bg-white-600 p-6">
         <h1 class="text-xl text-gray-600 font-semi italic mb-5">Table</h1>
+        <input type="search" [formControl]="input">
         <table cdk-table [dataSource]="dataSource" class="w-full text-sm text-left text-gray-500">
             <tr cdk-header-row class="text-xs text-gray-700 uppercase bg-gray-50" *cdkHeaderRowDef="columnsToDisplay"></tr>
             <tr cdk-row [ngClass]="{'bg-red-200': row.price < 100}" class="bg-white border-b" *cdkRowDef="let row; columns: columnsToDisplay"></tr>
