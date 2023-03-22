@@ -35,12 +35,24 @@ export class TodoComponent implements OnInit {
   }
 
   // Open dialog to edit the todo
-  openDialog() {
-    this.dialog.open(TodoDialogComponent, {
+  openDialog(todo: ToDo) {
+    const dialogRef = this.dialog.open(TodoDialogComponent, {
       minWidth: '300px',
       maxWidth: '500px',
       autoFocus: false,
+      data: {
+        todo: todo
+      }
     });
+
+    dialogRef.closed.subscribe((result) => {
+      // Si el resultado es undefined, es porque se ha cancelado el dialog
+      if (result) {
+        console.log(result);
+        
+      }
+    }
+    );
   }
 
   // Getter para saber si el todo es nuevo o no. Si el id es igual a '', es nuevo.
