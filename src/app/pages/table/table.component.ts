@@ -2,14 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/components/models/product.model';
 
+
+
 @Component({
-  selector: 'app-scrtoll',
-  templateUrl: './scrtoll.component.html'
+  selector: 'app-table',
+  templateUrl: './table.component.html'
 })
-export class ScrtollComponent implements OnInit {
+export class TableComponent implements OnInit {
 
   products: Product[] = [];
-
+  columnsToDisplay = ['id', 'title', 'price', 'cover'];
 
   constructor(
     private http: HttpClient
@@ -20,5 +22,4 @@ export class ScrtollComponent implements OnInit {
       this.products = products;
     });
   }
-
 }

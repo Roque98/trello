@@ -4,12 +4,14 @@ import { BoardComponent } from './pages/board/board.component';
 import { BoardsComponent } from './pages/boards/boards.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ScrtollComponent } from './pages/scrtoll/scrtoll.component';
+import { TableComponent } from './pages/table/table.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'boards', component: BoardsComponent },
   { path: 'board', component: BoardComponent },
   { path: 'scroll', component: ScrtollComponent },
+  { path: 'table', component: TableComponent },
   { path: '**', redirectTo: 'login' }
 ];
 

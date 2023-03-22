@@ -19,7 +19,8 @@ import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.compon
 import { ScrtollComponent } from './pages/scrtoll/scrtoll.component';
 import { HttpClientModule } from "@angular/common/http";
 import {ScrollingModule} from '@angular/cdk/scrolling';
-
+import { CdkTableModule } from "@angular/cdk/table";
+import { TableComponent } from './pages/table/table.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     TodoComponent,
     TodoDialogComponent,
     ScrtollComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     DragDropModule,
     DialogModule,
     HttpClientModule,
-    ScrollingModule
+    ScrollingModule,
+    CdkTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

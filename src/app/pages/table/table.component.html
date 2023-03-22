@@ -1,0 +1,35 @@
+<div class="flex flex-col h-screen">
+    <app-navbar></app-navbar>
+    <div class="w-full grow bg-white-600 p-6">
+        <table cdk-table [dataSource]="products">
+            <tr cdk-header-row *cdkHeaderRowDef="columnsToDisplay"></tr>
+            <tr cdk-row *cdkRowDef="let row; columns: columnsToDisplay"></tr>
+
+            <!-- id column -->
+            <ng-container cdkColumnDef="id">
+                <th cdk-header-cell *cdkHeaderCellDef>Id</th>
+                <td cdk-cell *cdkCellDef="let row">{{row.id}}</td>
+            </ng-container>
+
+            <!-- title column -->
+            <ng-container cdkColumnDef="title">
+                <th cdk-header-cell *cdkHeaderCellDef>Title</th>
+                <td cdk-cell *cdkCellDef="let row">{{row.title}}</td>
+            </ng-container>
+
+            <!-- price column -->
+            <ng-container cdkColumnDef="price">
+                <th cdk-header-cell *cdkHeaderCellDef>Price</th>
+                <td cdk-cell *cdkCellDef="let row">{{row.price}}</td>
+            </ng-container>
+
+            <!-- cover column-->
+            <ng-container cdkColumnDef="cover">
+                <th cdk-header-cell *cdkHeaderCellDef>Cover</th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <img class="w-64" [src]="row.images[0]" alt="cover" width="100" height="100">
+                </td>
+            </ng-container>
+        </table>
+    </div>
+</div>
