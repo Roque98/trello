@@ -16,6 +16,8 @@ import { ColumnComponent } from './pages/board/components/column/column.componen
 import { TodoComponent } from './pages/board/components/todo/todo.component';
 import { DialogModule } from '@angular/cdk/dialog';
 import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.component';
+import { ScrtollComponent } from './pages/scrtoll/scrtoll.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.compon
     ColumnComponent,
     TodoComponent,
     TodoDialogComponent,
+    ScrtollComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.compon
     CdkAccordionModule,
     DragDropModule,
     DialogModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
