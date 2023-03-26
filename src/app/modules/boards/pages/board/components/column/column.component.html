@@ -1,0 +1,57 @@
+<!-- header columna -->
+<div class="flex justify-between py-1">
+    <!-- Titulo de la columna -->
+    <h3 class="text-sm font-bold ml-2">{{ column.title }}</h3>
+    <!-- Boton para mostrar un menu overlay -->
+    <button (click)="showMenu = !showMenu" cdkOverlayOrigin #menuOverlay="cdkOverlayOrigin">
+        <fa-icon class="hover:bg-gray-300 p-2" style="color: gray;" [icon]="faEllipsisH"></fa-icon>
+    </button>
+</div>
+<!-- Contenedor de tarjetas -->
+<div class="text-sm mt-2 min-h-[2.5rem]" cdkDropList (cdkDropListDropped)="drop($event)"
+    [cdkDropListData]="column.todos" [id]="column.id" [cdkDropListConnectedTo]="columnsIds" >
+    <div *ngFor="let todo of column.todos" cdkDrag>
+        <app-todo [todo]="todo"></app-todo>
+    </div>
+</div>
+
+<!-- Boton para agregar nueva tarjeta -->
+<div class="text-sm mt-2">
+    <app-button (click)="addTodoToColumn(column)" [color]="'primary'">
+        <span class="material-icons mr-2">Agregar una tarjeta</span>
+    </app-button>
+</div>
+
+
+<!-- Menu overlay -->
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="menuOverlay" [cdkConnectedOverlayOpen]="showMenu" (overlayOutsideClick)="showMenu = !showMenu">
+    <div class="z-50 my-4 w-60 text-base list-none bg-white rounded divide-y divide-gray-100 shadow">
+        <div class="py-3 px-4 flex justify-between">
+            <span class="block text-sm text-center text-gray-900 w-full">Enumerar acciones</span>
+            <button (click)="showMenu = !showMenu" class="block text-sm text-gray-900">
+                x
+            </button>
+        </div>
+        <ul class="py-1">
+            <li>
+                <a href="#"
+                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">Añadir
+                    tarjeta...</a>
+            </li>
+            <li>
+                <a href="#"
+                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">Copiar
+                    lista...</a>
+            </li>
+            <li>
+                <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">Mover
+                    lista...</a>
+            </li>
+            <li>
+                <a href="#"
+                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">Seguir</a>
+            </li>
+        </ul>
+        
+    </div>
+</ng-template>

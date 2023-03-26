@@ -1,0 +1,28 @@
+<div class="flex flex-col h-screen">
+ 
+
+  <!-- Board -->
+  <div class="w-full grow bg-sky-600 px-4 pb-4">
+    <div class="flex flex-col h-full" >
+
+      <!-- Titulo -->
+      <div>
+        <h2 class="text-xl font-bold text-white my-4">Demo Board</h2>
+      </div>
+
+      <!-- Contenedor de columnas -->
+      <div class="flex grow items-start w-full h-full overflow-x-auto" cdkDropListGroup>
+        <!-- Columnas -->
+        <div class="rounded bg-gray-200 w-72 p-2 mr-3 shrink-0" *ngFor="let column of columns" >
+          <app-column [column]="column" [columnsIds]="columnsIds"></app-column>
+        </div>
+
+        <!-- Boton para agregar nueva columna -->
+        <button (click)="addColumn()" class="shrink-0">Add column</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
