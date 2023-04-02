@@ -12,6 +12,10 @@ import { CustomValidators } from 'src/app/utils/validators';
 })
 export class RegisterFormComponent {
 
+  formAvailableEmail = this.formBuilder.nonNullable.group({
+    email: ['', [Validators.email, Validators.required]],
+  });
+
   form = this.formBuilder.nonNullable.group({
     name: ['', [Validators.required]],
     email: ['', [Validators.email, Validators.required]],
@@ -20,7 +24,12 @@ export class RegisterFormComponent {
   }, {
     validators: [CustomValidators.MatchValidator('password', 'confirmPassword')]
   });
+
   status: RequestStatus = 'init';
+  statusAvailableEmail: RequestStatus = 'init';
+
+  showFormRegister = false;
+
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   showPassword = false;
@@ -53,4 +62,29 @@ export class RegisterFormComponent {
     }
   }
 
+  validateEmail() {
+    if (this.formAvailableEmail.valid) {
+      this.statusAvailableEmail = 'loading';
+      const { email } = this.formAvailableEmail.getRawValue();
+      this.authService.isAvailable(email)
+        .subscribe({
+          next: (response) => {
+            console.log(response);
+            this.statusAvailableEmail = 'success';
+            if (response.isAvailable) {
+              this.showFormRegister = true;
+              this.form.controls.email.setValue(email);
+            } else {
+              this.router.navigate(['/auth/login'], { queryParams: { email } });
+            }
+          },
+          error: (error) => {
+            console.log(error);
+            this.statusAvailableEmail = 'failed';
+          }
+        });
+    } else {
+      this.formAvailableEmail.markAllAsTouched();
+    }
+  }
 }

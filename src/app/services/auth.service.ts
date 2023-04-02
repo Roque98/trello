@@ -36,4 +36,11 @@ export class AuthService {
     return this.HttpClient.post(`${this.apiUrl}/auth/register`, { name, email, password });
   }
 
+  /**
+   * IsAvailable
+   * @param {string} email - The user's email address.
+  */
+  isAvailable(email: string) {
+    return this.HttpClient.post<{ isAvailable: boolean }>(`${this.apiUrl}/auth/is-available`, { email });
+  }
 }
