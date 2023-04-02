@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash, faPen } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -22,7 +23,8 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
 
@@ -33,7 +35,16 @@ export class LoginFormComponent implements OnInit {
     if (this.form.valid) {
       this.status = 'loading';
       const { email, password } = this.form.getRawValue();
-      // TODO
+      this.authService.login(email, password).subscribe({
+        next: () => {
+          this.status = 'success';
+          this.router.navigate(['/app']);
+        },
+        error: () => {
+          this.status = 'failed';
+        }
+      });
+
     } else {
       this.form.markAllAsTouched();
     }
