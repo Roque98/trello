@@ -62,4 +62,28 @@ export class AuthService {
         )
       );
   }
+
+  /**
+   * RecoveryPassword
+   * @param {string} email - The user's email address.
+   * @returns {Promise} A promise that resolves with the user's authentication token.
+   * @memberof AuthService
+   * @description Send email to user with recovery password link.
+    */
+  recoveryPassword(email: string) {
+    return this.HttpClient.post(`${this.apiUrl}/auth/recovery`, { email });
+  }
+
+  /**
+   * changePassword
+   * @param {string} email - The user's email address.
+   * @param {string} password - The user's password.
+   * @param {string} token - The user's token.
+   * @returns {Promise} A promise that resolves with the user's authentication token.
+   * @memberof AuthService
+  */
+  changePassword(token: string, password: string) {
+    return this.HttpClient.post(`${this.apiUrl}/auth/change-password`, { token, password  });
+  }
+
 }
