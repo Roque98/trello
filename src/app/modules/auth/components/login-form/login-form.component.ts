@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash, faPen } from '@fortawesome/free-solid-svg-icons';
+import { RequestStatus } from 'src/app/models/request-status.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginFormComponent implements OnInit {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   showPassword = false;
-  status: string = 'init';
+  status: RequestStatus = 'init';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,8 +41,10 @@ export class LoginFormComponent implements OnInit {
           this.status = 'success';
           this.router.navigate(['/app']);
         },
-        error: () => {
+        error: ( error ) => {
           this.status = 'failed';
+          console.log( error );
+          
         }
       });
 

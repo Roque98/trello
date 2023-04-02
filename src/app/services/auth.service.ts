@@ -13,7 +13,27 @@ export class AuthService {
     private HttpClient: HttpClient
   ) { }
 
+  /**
+    Logs a user into the system.
+    @param {string} email - The user's email address.
+    @param {string} password - The user's password.
+    @returns {Promise} A promise that resolves with the user's authentication token.
+  */
   login(email: string, password: string) {
     return this.HttpClient.post(`${this.apiUrl}/auth/login`, { email, password });
   }
+
+  /**
+   * Registers a new user.
+   * @param {string} name - The user's name.
+   * @param {string} email - The user's email address.
+   * @param {string} password - The user's password.
+   * @returns {Promise} A promise that resolves with the user's authentication token.
+   * @memberof AuthService
+   */
+
+  register(name: string, email: string, password: string) {
+    return this.HttpClient.post(`${this.apiUrl}/auth/register`, { name, email, password });
+  }
+
 }
