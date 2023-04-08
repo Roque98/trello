@@ -9,24 +9,19 @@ import { AuthService } from 'src/app/services/auth.service';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html'
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
   isOpen = false;
   faBell = faBell;
   faInfoCircle = faInfoCircle;
 
-  user: User | null = null;
+  user$ = this.authService.user$;
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.authService.getProfile().subscribe((user) => {
-      this.user = user;
-    });
-  }
 
   logout() {
     this.authService.logout();
