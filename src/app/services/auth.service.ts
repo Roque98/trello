@@ -27,7 +27,7 @@ export class AuthService {
     return this.HttpClient.post<ResponseLogin>(`${this.apiUrl}/auth/login`, { email, password })
       .pipe(
         tap((response) => {
-          this.tokenService.saveTokenInLocalStorage(response.access_token);
+          this.tokenService.saveTokenInCookie(response.access_token);
         })
       );
   }
@@ -92,6 +92,15 @@ export class AuthService {
   */
   changePassword(token: string, password: string) {
     return this.HttpClient.post(`${this.apiUrl}/auth/change-password`, { token, password  });
+  }
+
+  /**
+   * Logout
+   * @returns {Promise} A promise that resolves with the user's authentication token.
+   * @memberof AuthService
+   */
+  logout() {
+    this.tokenService.removeTokenFromCookie();
   }
 
 }

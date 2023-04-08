@@ -6,8 +6,7 @@ import { TokenService } from '../services/token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-
+export class RedirectGuard implements CanActivate {
   constructor(
     private tokenService: TokenService,
     private router: Router
@@ -16,11 +15,12 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     const token = this.tokenService.getTokenFromCookie();
-    if (!token) {
-      this.router.navigate(['/login']);
-      return false;
+
+    if (token) {
+      this.router.navigate(['/app']);
     }
     return true;
   }
-  
 }
+  
+
