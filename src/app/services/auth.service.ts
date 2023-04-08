@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
 import { ResponseLogin } from '../models/auth.model';
+import { User } from "../models/user.model";
+
 
 @Injectable({
   providedIn: 'root'
@@ -64,9 +66,9 @@ export class AuthService {
   registerAndLogin(name: string, email: string, password: string) {
     return this.register(name, email, password)
       .pipe(
-          switchMap((response) => {
-            return this.login(email, password);
-          }
+        switchMap((response) => {
+          return this.login(email, password);
+        }
         )
       );
   }
@@ -91,7 +93,7 @@ export class AuthService {
    * @memberof AuthService
   */
   changePassword(token: string, password: string) {
-    return this.HttpClient.post(`${this.apiUrl}/auth/change-password`, { token, password  });
+    return this.HttpClient.post(`${this.apiUrl}/auth/change-password`, { token, password });
   }
 
   /**
@@ -103,4 +105,17 @@ export class AuthService {
     this.tokenService.removeTokenFromCookie();
   }
 
+  /**
+   * profile
+   * @returns {Promise} A promise that resolves with the user's authentication token.
+   * 
+  */
+  getProfile() {
+    const token = this.tokenService.getTokenFromCookie();
+    return this.HttpClient.get<User>(`${this.apiUrl}/auth/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
 }
