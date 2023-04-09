@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { getCookie, setCookie, removeCookie } from "typescript-cookie";
+import jwt_decode, { JwtPayload } from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +60,26 @@ export class TokenService {
     removeCookie('token');
   }
   
+  /**
+   * isValidToken
+   * @returns boolean
+   */
+  isValidToken() {
+    const token = this.getTokenFromCookie();
 
+    // if token is not present
+    if (!token) {
+      return false;
+    }
+
+    // if token is present
+    const decodeToken = jwt_decode<JwtPayload>(token);
+
+    // if token is expired
+    if (decodeToken.exp && decodeToken.exp > Date.now() / 1000) {
+      return true;
+    }
+
+    return false;
+  }
 }
